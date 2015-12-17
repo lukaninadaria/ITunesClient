@@ -10,9 +10,11 @@ function SearchController ($scope, SearchService) {
     $scope.search = function() {
         $scope.searchResults = {};
         $scope.noResults = '';
+        $scope.resultTypes = [];
         SearchService.search($scope.keyWords, function(result) {
-            if (result) {
+            if (!_.isEmpty(result)) {
                 console.log(result);
+                $scope.resultTypes = _.keys(result);
                 $scope.searchResults = result;
             } else {
                 $scope.noResults = "No results"
