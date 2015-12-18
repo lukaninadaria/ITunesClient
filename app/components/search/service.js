@@ -3,11 +3,11 @@
  */
 (function() {
     angular.module('app')
-        .service('SearchService', ['ITunesSearchResult', searchService]);
+        .service('SearchService', ['SearchResource', searchService]);
 
-    function searchService(ITunesSearchResult) {
+    function searchService(SearchResource) {
         this.search = function(keyWords, callback) {
-            ITunesSearchResult.get({term : keyWords}).$promise
+            SearchResource.get({term : keyWords}).$promise
                 .then(function(res) {
                     callback && callback(parseResults(res));
                 });
